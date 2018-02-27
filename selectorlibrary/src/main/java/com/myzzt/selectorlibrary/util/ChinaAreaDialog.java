@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.myzzt.selectorlibrary.listener.IChoose;
 import com.myzzt.selectorlibrary.model.AreaBean;
 import com.myzzt.selectorlibrary.model.ChinaAreaJsonBean;
+import com.myzzt.selectorlibrary.model.ResultBean;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -152,7 +153,14 @@ public class ChinaAreaDialog {
                     ChinaAreaJsonBean.DataBean province = options1Items.get(options1);
                     AreaBean city = options2Items.get(options1).get(options2);
                     AreaBean district = options3Items.get(options1).get(options2).get(options3);
-                    mIChoose.onChoose(province.getId(), city.getId(), district.getId(), province.getTitle(), city.getTitle(), district.getTitle());
+                    ResultBean resultBean = new ResultBean();
+                    resultBean.setCity_id(city.getId());
+                    resultBean.setCity_name(city.getTitle());
+                    resultBean.setDistrict_id(district.getId());
+                    resultBean.setDistrict_name(district.getTitle());
+                    resultBean.setProvince_id(province.getId());
+                    resultBean.setProvince_title(province.getTitle());
+                    mIChoose.onChoose(resultBean);
                 }
             }
         })
