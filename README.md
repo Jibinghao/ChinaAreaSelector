@@ -16,7 +16,7 @@
 #### 2. 添加文件读写权限
 
     dependencies {
-	        compile 'com.github.Jibinghao:ChinaAreaSelector:v1.0'
+	        compile 'com.github.Jibinghao:ChinaAreaSelector:v1.1'
 	}
     
     
