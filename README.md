@@ -16,7 +16,7 @@
 #### 2. Add the dependency
 
     dependencies {
-	        compile 'com.github.Jibinghao:ChinaAreaSelector:v1.1'
+	        compile 'com.github.Jibinghao:ChinaAreaSelector:v1.2'
 	}
     
     
