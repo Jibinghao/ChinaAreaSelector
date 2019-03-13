@@ -4,7 +4,8 @@ package com.myzzt.selectorlibrary.model;
  * Created by jibinghao on 2018/2/27.
  */
 
-import com.bigkoo.pickerview.model.IPickerViewData;
+
+import com.contrarywind.interfaces.IPickerViewData;
 
 import java.util.List;
 

@@ -9,7 +9,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
-import com.bigkoo.pickerview.OptionsPickerView;
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.google.gson.Gson;
 import com.myzzt.selectorlibrary.listener.IChoose;
 import com.myzzt.selectorlibrary.model.AreaBean;
@@ -146,7 +148,7 @@ public class ChinaAreaDialog {
             return;
         }
         initJsonData();
-        OptionsPickerView pvOptions = new OptionsPickerView.Builder(mActivity, new OptionsPickerView.OnOptionsSelectListener() {
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(mActivity, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 if (mIChoose != null) {

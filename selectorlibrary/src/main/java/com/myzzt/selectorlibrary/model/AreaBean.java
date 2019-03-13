@@ -1,10 +1,11 @@
 package com.myzzt.selectorlibrary.model;
 
+import com.contrarywind.interfaces.IPickerViewData;
+
 /**
  * Created by jibinghao on 2018/2/27.
  */
 
-import com.bigkoo.pickerview.model.IPickerViewData;
 
 
 public class AreaBean implements IPickerViewData {
