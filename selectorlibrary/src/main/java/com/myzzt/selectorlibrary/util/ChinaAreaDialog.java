@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
@@ -139,47 +140,52 @@ public class ChinaAreaDialog {
 
 
     public void show() {
-        if (mIChoose == null) {
-            Log.e(TAG, "缺少IChoose");
-            return;
-        }
-        if (mActivity == null) {
-            Log.e(TAG, "缺少activity");
-            return;
-        }
-        initJsonData();
-        OptionsPickerView pvOptions = new OptionsPickerBuilder(mActivity, new OnOptionsSelectListener() {
-            @Override
-            public void onOptionsSelect(int options1, int options2, int options3, View v) {
-                if (mIChoose != null) {
-                    ChinaAreaJsonBean.DataBean province = options1Items.get(options1);
-                    AreaBean city = options2Items.get(options1).get(options2);
-                    AreaBean district = options3Items.get(options1).get(options2).get(options3);
-                    ResultBean resultBean = new ResultBean();
-                    resultBean.setCity_id(city.getId());
-                    resultBean.setCity_name(city.getTitle());
-                    resultBean.setDistrict_id(district.getId());
-                    resultBean.setDistrict_name(district.getTitle());
-                    resultBean.setProvince_id(province.getId());
-                    resultBean.setProvince_title(province.getTitle());
-                    mIChoose.onChoose(resultBean);
-                }
+        try {
+            if (mIChoose == null) {
+                Log.e(TAG, "缺少IChoose");
+                return;
             }
-        })
-                .setCancelText(mCancelText)//取消按钮文字
-                .setSubmitText(mSubmitText)//确认按钮文字
-                .setContentTextSize(mContentTextSize)//滚轮文字大小
-                .setTitleSize(mTitleSize)//标题文字大小
-                .setTitleText(mTitleText)
-                .setDividerColor(mDividerColor)
-                .setTextColorCenter(mTextColorCenter) //设置选中项文字颜色
-                .setOutSideCancelable(mOutSideCancelable)// default is true
-                .setTitleBgColor(mTitleBgColor)//标题背景颜色
-                .setBgColor(mBgColor)//滚轮背景颜色
-                .setSelectOptions(mOption1, mOption2, mOption3)
-                .build();
-        pvOptions.setPicker(options1Items, options2Items, options3Items);//三级选择器
-        pvOptions.show();
+            if (mActivity == null) {
+                Log.e(TAG, "缺少activity");
+                return;
+            }
+            initJsonData();
+            OptionsPickerView pvOptions = new OptionsPickerBuilder(mActivity, new OnOptionsSelectListener() {
+                @Override
+                public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                    if (mIChoose != null) {
+                        ChinaAreaJsonBean.DataBean province = options1Items.get(options1);
+                        AreaBean city = options2Items.get(options1).get(options2);
+                        AreaBean district = options3Items.get(options1).get(options2).get(options3);
+                        ResultBean resultBean = new ResultBean();
+                        resultBean.setCity_id(city.getId());
+                        resultBean.setCity_name(city.getTitle());
+                        resultBean.setDistrict_id(district.getId());
+                        resultBean.setDistrict_name(district.getTitle());
+                        resultBean.setProvince_id(province.getId());
+                        resultBean.setProvince_title(province.getTitle());
+                        mIChoose.onChoose(resultBean);
+                    }
+                }
+            })
+                    .setCancelText(mCancelText)//取消按钮文字
+                    .setSubmitText(mSubmitText)//确认按钮文字
+                    .setContentTextSize(mContentTextSize)//滚轮文字大小
+                    .setTitleSize(mTitleSize)//标题文字大小
+                    .setTitleText(mTitleText)
+                    .setDividerColor(mDividerColor)
+                    .setTextColorCenter(mTextColorCenter) //设置选中项文字颜色
+                    .setOutSideCancelable(mOutSideCancelable)// default is true
+                    .setTitleBgColor(mTitleBgColor)//标题背景颜色
+                    .setBgColor(mBgColor)//滚轮背景颜色
+                    .setSelectOptions(mOption1, mOption2, mOption3)
+                    .setDecorView((ViewGroup) mActivity.getWindow().getDecorView().findViewById(android.R.id.content))
+                    .build();
+            pvOptions.setPicker(options1Items, options2Items, options3Items);//三级选择器
+            pvOptions.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
